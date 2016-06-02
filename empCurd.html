@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Details</title>
+   
+    <script src="app/lib/angular.js"></script>
+    <script src="app/lib/employee.js"></script>
+
+    <link href="css/emp.css" rel="stylesheet" />
+</head>
+<body ng-app='emp'>
+
+    <div id="header">
+        <h1>Crud Operation</h1>
+    </div>
+
+    <div ng-controller="empController">
+
+        <fieldset>
+            <legend>Operation</legend>
+
+            Delete<input type="checkbox" ng-model="check">
+            Edit details<input type="checkbox" ng-model="edit">
+
+
+        </fieldset>
+          <br>
+        <fieldset id="select">
+            <legend id="l1" ng-hide="edit">Add Employee</legend>
+            <legend id="l1" ng-show="edit">Update Details</legend>
+
+            <form>
+                <table id="formDiv">
+                    <tr>
+                        <td>First Name :</td>
+                        <td><input type="text" ng-model="newEmp.firstName" /></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name :</td>
+                        <td><input type="text" ng-model="newEmp.lastName" /></td>
+                    </tr>
+                    <tr>
+                        <td>Gender :</td>
+                        <td><input type="text" ng-model="newEmp.gender" /></td>
+                    </tr>
+                    <tr>
+                        <td>Salary :</td>
+                        <td><input type="text" ng-model="newEmp.salary" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" ng-hide="edit"><input type="button" value="Add Employee Details" ng-click="addEmpDetails();" />
+                        <td colspan="2" ng-show="edit">
+                            <input type="button" value="Update Details" ng-click="updateEmpDetails();" />
+                        </td>
+                    </tr>
+                    <tr></tr>
+                </table>
+            </form>
+        </fieldset>
+
+        <fieldset id="display">
+            <legend id="l2">Employee Details</legend>
+
+
+            <table id="T002">
+                <thead id="thead1">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Gender</th>
+                        <th>Salary</th>
+                        <th ng-show="check">Delete</th>
+                        <th ng-show="edit">Edit details</th>
+                    </tr>
+
+                </thead>
+                <tbody id="tbody">
+                    <tr ng-repeat="employee in empList">
+                        <td>{{ employee.firstName}}</td>
+                        <td>{{ employee.lastName}}</td>
+                        <td>{{ employee.gender}}</td>
+                        <td>{{ employee.salary}}</td>
+                        <td ng-show="check"><input type="button" value="delete" ng-click="deleteEmp(employee.firstName)"></td>
+                        <td ng-show="edit"><input type="button" value="edit" ng-click="editEmp(employee.firstName)" ng-model="update1"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </fieldset>
+
+
+    </div>
+</body>
+</html>
